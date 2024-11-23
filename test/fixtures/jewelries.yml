@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  brand: one
+  studio: one
+  location: one
+  material: one
+  jewelry_attributes: one
+  jewelry_attributes_type: Jewelry attributes
+
+two:
+  name: MyString
+  brand: two
+  studio: two
+  location: two
+  material: two
+  jewelry_attributes: two
+  jewelry_attributes_type: Jewelry attributes

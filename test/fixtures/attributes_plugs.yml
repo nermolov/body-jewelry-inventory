@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gauge: 1.5
+  length: 1.5
+  double_flared: false
+
+two:
+  gauge: 1.5
+  length: 1.5
+  double_flared: false

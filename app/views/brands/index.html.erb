@@ -8,7 +8,7 @@
   <% @brands.each do |brand| %>
     <%= render brand %>
     <p>
-      <%= link_to "Show this brand", brand %>
+      <%= link_to "Show this brand", edit_brand_path(brand) %>
     </p>
   <% end %>
 </div>

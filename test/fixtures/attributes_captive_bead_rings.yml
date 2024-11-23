@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gauge: 1.5
+  ring_diameter: 1.5
+  bead_diameter: 1.5
+
+two:
+  gauge: 1.5
+  ring_diameter: 1.5
+  bead_diameter: 1.5

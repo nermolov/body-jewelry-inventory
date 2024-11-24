@@ -1,24 +1,21 @@
-# README
+# body-jewelry inventory
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A body jewelry inventory app built for my boyfriend in the industry.
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+```sh
+bundle install
+bin/rails db:migrate
+bin/dev
+```
 
-* System dependencies
+## Testing
 
-* Configuration
+```sh
+bin/rails test:all
+```
 
-* Database creation
+## Production
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Authentication is needed before the app can be deployed to production

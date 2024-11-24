@@ -1,0 +1,23 @@
+<%# 
+input: fields: {field, title}[], models: model[]
+output: table
+%>
+
+<table class="w-full border-collapse text-left font-normal">
+  <thead>
+    <tr>
+      <% fields.each do |field, index| %>
+        <th class="font-normal"><%= field[:title] %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% models.each do |model, index| %>
+      <tr class="border-2 border-gray-400 rounded">
+        <% fields.each do |field, index| %>
+          <td><%= model[field[:field]] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

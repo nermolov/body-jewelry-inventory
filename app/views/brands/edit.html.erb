@@ -1,12 +1,6 @@
 <% content_for :title, "Editing brand" %>
 
-<%= render "form", brand: @brand do %>
-  <%= link_to "Destroy", brand_path(@brand), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"
-  }, class: "btn btn-critical" %>
-<% end %>
-
+<%= render "form", brand: @brand %>
 <br>
 
 <div>

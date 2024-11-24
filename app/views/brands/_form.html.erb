@@ -2,8 +2,5 @@
   <%= f.input :name %>
   <%= f.input :website_url %>
 
-  <div class="flex gap-2">
-    <%= f.submit %>
-    <%= yield %>
-  </div>
+  <%= render "partials/form_save_or_delete", record: brand, f: f %>
 <% end %>

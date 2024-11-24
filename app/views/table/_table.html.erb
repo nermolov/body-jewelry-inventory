@@ -15,7 +15,13 @@ output: table
     <% models.each do |model, index| %>
       <tr class="border-2 border-gray-400 rounded">
         <% fields.each do |field, index| %>
-          <td><%= model[field[:field]] %></td>
+          <td><%=
+            if field.key?(:lambda)
+              field[:lambda].call(model)
+            else
+              model[field[:field]]
+            end
+          %></td>
         <% end %>
       </tr>
     <% end %>

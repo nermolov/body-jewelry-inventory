@@ -7,7 +7,8 @@
 <%= render partial: "table/table", locals: {
   fields: [
     {field: "name", title: "Name"},
-    {field: "website_url", title: "URL"}
+    {field: "website_url", title: "URL"},
+    {lambda: proc { |brand| link_to "View", edit_brand_path(brand) }, title: ""}
   ], 
   models: @brands
 } %>

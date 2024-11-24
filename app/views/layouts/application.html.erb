@@ -25,6 +25,10 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5">
+      <header class="flex items-center justify-between mb-8">
+        <h1 class="font-bold text-lg"><%= content_for(:title) %></h1>
+        <%= content_for(:header_aside) %>
+      </header>
       <p style="color: green"><%= notice %></p>
       <%= yield %>
     </main>

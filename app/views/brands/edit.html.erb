@@ -1,7 +1,5 @@
 <% content_for :title, "Editing brand" %>
 
-<h1>Editing brand</h1>
-
 <%= render "form", brand: @brand do %>
   <%= link_to "Destroy", brand_path(@brand), data: {
     turbo_method: :delete,

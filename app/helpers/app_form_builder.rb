@@ -36,7 +36,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def label(method, label = nil, options = {})
-    super(method, label, merge_input_options({class: "form-label"}, options))
+    super(method, label, merge_input_options({ class: "form-label" }, options))
   end
 
   private
@@ -46,7 +46,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
       safe_join [
         block.call,
         hint_text(options[:hint]),
-        error_text(method),
+        error_text(method)
       ].compact
     end
   end
@@ -68,7 +68,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     normalized_method = association ? association.name : method
     @object.errors.key?(normalized_method)
   end
-  
+
   def load_error(method)
     association = find_association(method)
     normalized_method = association ? association.name : method
@@ -91,7 +91,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     form_group(method, options) do
       safe_join [
         (label(method, options[:label]) unless options[:label] == false),
-        string_field(method, merge_input_options({input_html: {class: "form-control #{"is-invalid" if has_error?(method)}"}}, options)),
+        string_field(method, merge_input_options({ input_html: { class: "form-control #{"is-invalid" if has_error?(method)}" } }, options))
       ]
     end
   end
@@ -100,7 +100,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     form_group(method, options) do
       safe_join [
         (label(method, options[:label]) unless options[:label] == false),
-        text_area(method, merge_input_options({class: "form-control #{"is-invalid" if has_error?(method)}"}, options[:input_html])),
+        text_area(method, merge_input_options({ class: "form-control #{"is-invalid" if has_error?(method)}" }, options[:input_html]))
       ]
     end
   end
@@ -109,8 +109,8 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     form_group(method, options) do
       tag.div(class: "form-check") do
         safe_join [
-          check_box(method, merge_input_options({class: "form-check-input"}, options[:input_html])),
-          label(method, options[:label], class: "form-check-label"),
+          check_box(method, merge_input_options({ class: "form-check-input" }, options[:input_html])),
+          label(method, options[:label], class: "form-check-label")
         ]
       end
     end
@@ -120,7 +120,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     form_group(method, options) do
       safe_join [
         label(method, options[:label]),
-        block.call,
+        block.call
       ]
     end
   end
@@ -133,14 +133,14 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     multiple = input_options[:multiple]
 
     collection_input(method, options) do
-      collection_select(method, options[:collection], value_method, text_method, options, merge_input_options({class: "#{"custom-select" unless multiple} form-control #{"is-invalid" if has_error?(method)}"}, options[:input_html]))
+      collection_select(method, options[:collection], value_method, text_method, options, merge_input_options({ class: "#{"custom-select" unless multiple} form-control #{"is-invalid" if has_error?(method)}" }, options[:input_html]))
     end
   end
 
   def grouped_select_input(method, options = {})
     # We probably need to go back later and adjust this for more customization
     collection_input(method, options) do
-      grouped_collection_select(method, options[:collection], :last, :first, :to_s, :to_s, options, merge_input_options({class: "custom-select form-control #{"is-invalid" if has_error?(method)}"}, options[:input_html]))
+      grouped_collection_select(method, options[:collection], :last, :first, :to_s, :to_s, options, merge_input_options({ class: "custom-select form-control #{"is-invalid" if has_error?(method)}" }, options[:input_html]))
     end
   end
 
@@ -148,15 +148,15 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     form_group(method, options) do
       safe_join [
         (label(method, options[:label]) unless options[:label] == false),
-        file_field(method, merge_input_options({class: "form-control"}, options))
+        file_field(method, merge_input_options({ class: "form-control" }, options))
       ]
     end
   end
 
   def collection_of(input_type, method, options = {})
     form_builder_method, custom_class, input_builder_method = case input_type
-    when :radio_buttons then [:collection_radio_buttons, "custom-radio", :radio_button]
-    when :check_boxes then [:collection_check_boxes, "custom-checkbox", :check_box]
+    when :radio_buttons then [ :collection_radio_buttons, "custom-radio", :radio_button ]
+    when :check_boxes then [ :collection_check_boxes, "custom-checkbox", :check_box ]
     else raise "Invalid input_type for collection_of, valid input_types are \":radio_buttons\", \":check_boxes\""
     end
 
@@ -168,10 +168,10 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
           tag.div(class: "custom-control #{custom_class}") {
             safe_join [
               b.send(input_builder_method, class: "custom-control-input"),
-              b.label(class: "custom-control-label"),
+              b.label(class: "custom-control-label")
             ]
           }
-        end),
+        end)
       ]
     end
   end
@@ -190,14 +190,14 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     when :date then
       birthday = method.to_s =~ /birth/
       safe_join [
-        date_field(method, merge_input_options(html_options, {data: {datepicker: true}})),
+        date_field(method, merge_input_options(html_options, { data: { datepicker: true } })),
         tag.div {
           date_select(method, {
-            order: [:month, :day, :year],
+            order: [ :month, :day, :year ],
             start_year: birthday ? 1900 : Date.today.year - 5,
-            end_year: birthday ? Date.today.year : Date.today.year + 5,
-          }, {data: {date_select: true}})
-        },
+            end_year: birthday ? Date.today.year : Date.today.year + 5
+          }, { data: { date_select: true } })
+        }
       ]
     when :integer then number_field(method, html_options)
     when :string
@@ -221,7 +221,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
 
     options.deep_merge(user_options) do |key, val1, val2|
       # When we pass in classes or stimulus related attributes we will try to merge them by concatenation rather than overwriting.
-      if [:action, :controller, :class].include?(key)
+      if [ :action, :controller, :class ].include?(key)
         @template.token_list(val1, val2)
       else
         val2

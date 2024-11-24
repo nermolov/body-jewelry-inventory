@@ -7,7 +7,7 @@ one:
   location: one
   material: one
   jewelry_attributes: one
-  jewelry_attributes_type: Jewelry attributes
+  jewelry_attributes_type: AttributesCaptiveBeadRing
 
 two:
   name: MyString
@@ -16,4 +16,4 @@ two:
   location: two
   material: two
   jewelry_attributes: two
-  jewelry_attributes_type: Jewelry attributes
+  jewelry_attributes_type: AttributesCaptiveBeadRing

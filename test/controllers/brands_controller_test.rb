@@ -20,12 +20,7 @@ class BrandsControllerTest < ActionDispatch::IntegrationTest
       post brands_url, params: { brand: { name: @brand.name, website_url: @brand.website_url } }
     end
 
-    assert_redirected_to brand_url(Brand.last)
-  end
-
-  test "should show brand" do
-    get brand_url(@brand)
-    assert_response :success
+    assert_redirected_to edit_brand_url(Brand.last)
   end
 
   test "should get edit" do
@@ -35,7 +30,7 @@ class BrandsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update brand" do
     patch brand_url(@brand), params: { brand: { name: @brand.name, website_url: @brand.website_url } }
-    assert_redirected_to brand_url(@brand)
+    assert_redirected_to edit_brand_url(@brand)
   end
 
   test "should destroy brand" do

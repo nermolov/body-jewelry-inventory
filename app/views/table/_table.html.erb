@@ -1,27 +1,35 @@
 <%# 
-input: fields: {field, title}[], models: model[]
-output: table
+fields: {field, title}[],
+models: model[]
 %>
 
 <table class="w-full border-collapse text-left font-normal">
   <thead>
     <tr>
       <% fields.each do |field, index| %>
-        <th class="font-normal"><%= field[:title] %></th>
+        <%= render "table/cell", row: "header", field_count: fields.length, field_index: index do %>
+          <%= field[:title] %>
+        <% end %>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <% models.each do |model, index| %>
-      <tr class="border-2 border-gray-400 rounded">
-        <% fields.each do |field, index| %>
-          <td><%=
-            if field.key?(:lambda)
-              field[:lambda].call(model)
-            else
-              model[field[:field]]
-            end
-          %></td>
+    <% models.each do |model, model_index| %>
+      <tr>
+        <% fields.each do |field, field_index| %>
+          <%= render "table/cell",
+            row: (model_index == models.length - 1 ? "last-row" : "row"),
+            field_count: fields.length,
+            field_index: field_index do
+          %>
+            <%=
+              if field.key?(:lambda)
+                field[:lambda].call(model)
+              else
+                model[field[:field]]
+              end
+            %>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

@@ -4,53 +4,13 @@
 
 <h1>Brands</h1>
 
-<%= render partial: "table/table", locals: {
+<%= render "table/table",
   fields: [
     {field: "name", title: "Name"},
     {field: "website_url", title: "URL"},
     {lambda: proc { |brand| link_to "View", edit_brand_path(brand) }, title: ""}
   ], 
   models: @brands
-} %>
-
-<table class="w-full border-collapse text-left font-normal">
-  <thead>
-    <tr>
-      <% %w[name, url].each do |field, index| %>
-        <th class="font-normal">Name</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @brands.each do |brand| %>
-      <tr class="border-2 border-gray-400 rounded">
-        <td><%= brand.name %></td>
-        <td><%= brand.website_url %></td>
-        <td><%= link_to "View", edit_brand_path(brand) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<div id="brands">
-  <% @brands.each do |brand| %>
-<div id="<%= dom_id brand %>">
-  <p>
-    <strong>Name:</strong>
-    <%= brand.name %>
-  </p>
-
-  <p>
-    <strong>Website url:</strong>
-    <%= brand.website_url %>
-  </p>
-
-</div>
-    <p>
-      <%= link_to "Show this brand", edit_brand_path(brand) %>
-    </p>
-  <% end %>
-</div>
+%>
 
 <%= link_to "New brand", new_brand_path %>

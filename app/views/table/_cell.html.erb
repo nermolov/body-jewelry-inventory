@@ -1,0 +1,9 @@
+<%# 
+row: "header" | "row" | "last-row",
+field_count: number,
+field_index: number
+%>
+
+<<%= row == "header" ? "th" : "td" %> class="font-normal">
+  <%= yield %>
+</<%= row == "header" ? "th" : "td" %>>

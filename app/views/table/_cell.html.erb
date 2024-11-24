@@ -1,9 +1,12 @@
 <%# 
 row: "header" | "row" | "last-row",
-field_count: number,
-field_index: number
 %>
 
-<<%= row == "header" ? "th" : "td" %> class="font-normal">
+<<%= row == "header" ? "th" : "td" %> class="<%= class_names({
+    "py-[14px] border-b-2": row == "header",
+    "py-4 border-b": row != "header"
+  },
+  "px-3 first:pl-0 last:pr-0 border-gray-400"
+  ) %>">
   <%= yield %>
 </<%= row == "header" ? "th" : "td" %>>

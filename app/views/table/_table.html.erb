@@ -7,7 +7,7 @@ models: model[]
   <thead>
     <tr>
       <% fields.each do |field, index| %>
-        <%= render "table/cell", row: "header", field_count: fields.length, field_index: index do %>
+        <%= render "table/cell", row: "header" do %>
           <%= field[:title] %>
         <% end %>
       <% end %>
@@ -17,11 +17,7 @@ models: model[]
     <% models.each do |model, model_index| %>
       <tr>
         <% fields.each do |field, field_index| %>
-          <%= render "table/cell",
-            row: (model_index == models.length - 1 ? "last-row" : "row"),
-            field_count: fields.length,
-            field_index: field_index do
-          %>
+          <%= render "table/cell", row: (model_index == models.length - 1 ? "last-row" : "row") do %>
             <%=
               if field.key?(:lambda)
                 field[:lambda].call(model)

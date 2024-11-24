@@ -19,23 +19,19 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(brand_params)
 
-    respond_to do |format|
-      if @brand.save
-        redirect_to @brand, notice: "Brand was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @brand.save
+      redirect_to edit_brand_path(@brand), notice: "Brand was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /brands/1
   def update
-    respond_to do |format|
-      if @brand.update(brand_params)
-        redirect_to @brand, notice: "Brand was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @brand.update(brand_params)
+      redirect_to edit_brand_path(@brand), notice: "Brand was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -43,9 +39,7 @@ class BrandsController < ApplicationController
   def destroy
     @brand.destroy!
 
-    respond_to do |format|
-      redirect_to brands_path, status: :see_other, notice: "Brand was successfully destroyed."
-    end
+    redirect_to brands_path, status: :see_other, notice: "Brand was successfully destroyed."
   end
 
   private

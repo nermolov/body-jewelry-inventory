@@ -1,0 +1,12 @@
+<% content_for :title, "Jewelries" %>
+<% content_for :header_aside do %>
+  <%= link_to "New Jewelry", new_jewelry_path, class: "btn" %>
+<% end %>
+
+<%= render "table/table",
+  fields: [
+    {field: "name", title: "Name"},
+    {lambda: proc { |jewelry| link_to "View", edit_jewelry_path(jewelry), class: "underline" }, title: ""}
+  ], 
+  models: @jewelries
+%>

@@ -1,0 +1,5 @@
+<%= app_form_with(model: jewelry) do |f| %>
+  <%= f.input :name %>
+
+  <%= render "partials/form_save_or_delete", record: jewelry, f: f %>
+<% end %>

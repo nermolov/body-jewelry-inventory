@@ -18,11 +18,40 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="container mx-auto mt-12 px-5">
+    <% if notice %>
+      <div class="fixed right-4 bottom-4 w-[300px] h-[100px] flex items-end">
+        <dialog class="bg-green-600 text-white p-4 rounded-md w-full bottom-0 relative m-0" open>
+          <form method="dialog" class="absolute top-2 right-2">
+            <button><%= image_tag "close.svg", alt: "Close", height: "22px", width: "22px" %></button>
+          </form>
+          <p class="mr-3"><%= notice %></p>
+        </dialog>
+      </div>
+    <% end %>
+
+    <nav class="mb-12">
+      <ul class="flex gap-4">
+        <li><%= link_to "Brands", brands_path, class: "underline" %></li>
+        <li><%= link_to "Locations", locations_path, class: "underline" %></li>
+        <li><%= link_to "Materials", materials_path, class: "underline" %></li>
+        <li><%= link_to "Studios", studios_path, class: "underline" %></li>
+      </ul>
+    </nav>
+
+    <main class="<%= class_names({ "max-w-2xl mx-auto": params[:action] != "index" }) %>">
+
+      <header class="flex items-center justify-between mb-8">
+        <h1 class="font-bold text-lg"><%= content_for(:title) %></h1>
+        <%= content_for(:header_aside) %>
+      </header>
+
+      <%= yield %>
+    </main>
   </body>
 </html>

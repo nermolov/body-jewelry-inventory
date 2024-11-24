@@ -1,0 +1,6 @@
+<%= app_form_with(model: brand) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :website_url %>
+
+  <%= render "partials/form_save_or_delete", record: brand, f: f %>
+<% end %>

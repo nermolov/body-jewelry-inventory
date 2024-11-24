@@ -1,0 +1,12 @@
+<% content_for :title, "Materials" %>
+<% content_for :header_aside do %>
+  <%= link_to "New Material", new_material_path, class: "btn" %>
+<% end %>
+
+<%= render "table/table",
+  fields: [
+    {field: "name", title: "Name"},
+    {lambda: proc { |material| link_to "View", edit_material_path(material), class: "underline" }, title: ""}
+  ], 
+  models: @materials
+%>

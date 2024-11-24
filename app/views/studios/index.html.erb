@@ -1,0 +1,15 @@
+<% content_for :title, "Studios" %>
+<% content_for :header_aside do %>
+  <%= link_to "New Studio", new_studio_path, class: "btn" %>
+<% end %>
+
+<%= render "table/table",
+  fields: [
+    {field: "name", title: "Name"},
+    {field: "address", title: "Address"},
+    {field: "website_url", title: "URL"},
+    {field: "phone", title: "Phone"},
+    {lambda: proc { |studio| link_to "View", edit_studio_path(studio), class: "underline" }, title: ""}
+  ], 
+  models: @studios
+%>

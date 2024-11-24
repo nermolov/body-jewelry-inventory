@@ -1,0 +1,9 @@
+<div class="flex gap-2">
+  <%= f.submit %>
+  <% if params[:action] == "edit" %>
+    <%= link_to "Destroy", polymorphic_path(record), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    }, class: "btn btn-critical" %>
+  <% end %>
+</div>

@@ -1,0 +1,33 @@
+<%# 
+fields: {field, title, lambda}[],
+models: model[]
+%>
+
+<table class="w-full border-collapse text-left font-normal">
+  <thead>
+    <tr>
+      <% fields.each do |field| %>
+        <%= render "table/cell", row: "header" do %>
+          <%= field[:title] %>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% models.each_with_index do |model, model_index| %>
+      <tr>
+        <% fields.each do |field| %>
+          <%= render "table/cell", row: (model_index == (models.length - 1) ? "last-row" : "row") do %>
+            <%=
+              if field.key?(:lambda)
+                field[:lambda].call(model)
+              else
+                model[field[:field]]
+              end
+            %>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

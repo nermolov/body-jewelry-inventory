@@ -1,0 +1,12 @@
+<% content_for :title, "Locations" %>
+<% content_for :header_aside do %>
+  <%= link_to "New Location", new_location_path, class: "btn" %>
+<% end %>
+
+<%= render "table/table",
+  fields: [
+    {field: "name", title: "Name"},
+    {lambda: proc { |location| link_to "View", edit_location_path(location), class: "underline" }, title: ""}
+  ], 
+  models: @locations
+%>

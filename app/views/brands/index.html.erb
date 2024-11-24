@@ -1,0 +1,13 @@
+<% content_for :title, "Brands" %>
+<% content_for :header_aside do %>
+  <%= link_to "New Brand", new_brand_path, class: "btn" %>
+<% end %>
+
+<%= render "table/table",
+  fields: [
+    {field: "name", title: "Name"},
+    {field: "website_url", title: "URL"},
+    {lambda: proc { |brand| link_to "View", edit_brand_path(brand), class: "underline" }, title: ""}
+  ], 
+  models: @brands
+%>

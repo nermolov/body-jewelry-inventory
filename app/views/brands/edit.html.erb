@@ -2,14 +2,15 @@
 
 <h1>Editing brand</h1>
 
-<%= render "form", brand: @brand %>
+<%= render "form", brand: @brand do %>
+  <%= link_to "Destroy", brand_path(@brand), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  }, class: "btn btn-critical" %>
+<% end %>
 
 <br>
 
 <div>
-  <%= link_to "Destroy", brand_path(@brand), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"
-  } %> |
   <%= link_to "Back to brands", brands_path %>
 </div>

@@ -2,5 +2,8 @@
   <%= f.input :name %>
   <%= f.input :website_url %>
 
-  <%= f.submit %>
+  <div class="flex gap-2">
+    <%= f.submit %>
+    <%= yield %>
+  </div>
 <% end %>

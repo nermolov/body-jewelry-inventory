@@ -40,7 +40,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def submit
-    super class: "btn-primary"
+    super class: "btn"
   end
 
   private

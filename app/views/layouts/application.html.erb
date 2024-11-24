@@ -23,7 +23,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="container mx-auto mt-12 px-5">
     <% if notice %>
       <div class="fixed right-4 bottom-4 w-[300px] h-[100px] flex items-end">
         <dialog class="bg-green-600 text-white p-4 rounded-md w-full bottom-0 relative m-0" open>
@@ -35,7 +35,15 @@
       </div>
     <% end %>
 
-    <main class="container mx-auto mt-28 px-5 <%= class_names({ "max-w-2xl": params[:action] != "index" }) %>">
+    <nav class="mb-12">
+      <ul class="flex gap-6">
+        <li><%= link_to "Brands", brands_path, class: "underline" %></li>
+        <li><%= link_to "Brands", brands_path, class: "underline" %></li>
+        <li><%= link_to "Brands", brands_path, class: "underline" %></li>
+      </ul>
+    </nav>
+
+    <main class="<%= class_names({ "max-w-2xl mx-auto": params[:action] != "index" }) %>">
 
       <header class="flex items-center justify-between mb-8">
         <h1 class="font-bold text-lg"><%= content_for(:title) %></h1>

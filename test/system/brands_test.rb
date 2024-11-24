@@ -12,31 +12,30 @@ class BrandsTest < ApplicationSystemTestCase
 
   test "should create brand" do
     visit brands_url
-    click_on "New brand"
+    click_on "New Brand"
 
     fill_in "Name", with: @brand.name
     fill_in "Website url", with: @brand.website_url
     click_on "Create Brand"
 
     assert_text "Brand was successfully created"
-    click_on "Back"
   end
 
   test "should update Brand" do
-    visit brand_url(@brand)
-    click_on "Edit this brand", match: :first
+    visit edit_brand_url(@brand)
 
     fill_in "Name", with: @brand.name
     fill_in "Website url", with: @brand.website_url
     click_on "Update Brand"
 
     assert_text "Brand was successfully updated"
-    click_on "Back"
   end
 
   test "should destroy Brand" do
-    visit brand_url(@brand)
-    click_on "Destroy this brand", match: :first
+    visit edit_brand_url(@brand)
+    accept_alert do
+      click_on "Destroy", match: :first
+    end
 
     assert_text "Brand was successfully destroyed"
   end

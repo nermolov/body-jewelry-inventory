@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  website_url: MyString
+  website_url: https://foo.com/
 
 two:
   name: MyString
-  website_url: MyString
+  website_url: https://bar.com/

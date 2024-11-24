@@ -6,7 +6,7 @@ models: model[]
 <table class="w-full border-collapse text-left font-normal">
   <thead>
     <tr>
-      <% fields.each do |field, index| %>
+      <% fields.each do |field| %>
         <%= render "table/cell", row: "header" do %>
           <%= field[:title] %>
         <% end %>
@@ -14,10 +14,10 @@ models: model[]
     </tr>
   </thead>
   <tbody>
-    <% models.each do |model, model_index| %>
+    <% models.each_with_index do |model, model_index| %>
       <tr>
-        <% fields.each do |field, field_index| %>
-          <%= render "table/cell", row: (model_index == models.length - 1 ? "last-row" : "row") do %>
+        <% fields.each do |field| %>
+          <%= render "table/cell", row: (model_index == (models.length - 1) ? "last-row" : "row") do %>
             <%=
               if field.key?(:lambda)
                 field[:lambda].call(model)

@@ -2,13 +2,16 @@
 
 <% content_for :title, "Brands" %>
 
+<header class="flex items-center justify-between mb-8">
+  <h1 class="font-bold text-lg">Brands</h1>
+  <%= link_to "New Brand", new_brand_path, class: "underline" %>
+</header>
+
 <%= render "table/table",
   fields: [
     {field: "name", title: "Name"},
     {field: "website_url", title: "URL"},
-    {lambda: proc { |brand| link_to "View", edit_brand_path(brand) }, title: ""}
+    {lambda: proc { |brand| link_to "View", edit_brand_path(brand), class: "underline" }, title: ""}
   ], 
   models: @brands
 %>
-
-<%= link_to "New brand", new_brand_path %>

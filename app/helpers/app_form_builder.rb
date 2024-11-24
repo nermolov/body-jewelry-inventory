@@ -39,6 +39,10 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
     super(method, label, merge_input_options({ class: "form-label" }, options))
   end
 
+  def submit
+    super class: "btn-primary"
+  end
+
   private
 
   def form_group(method, options = {}, &block)

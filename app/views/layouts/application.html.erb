@@ -24,12 +24,24 @@
   </head>
 
   <body>
+    <% if notice %>
+      <div class="fixed right-4 bottom-4 w-[300px] h-[100px] flex items-end">
+        <dialog class="bg-green-600 text-white p-4 rounded-md w-full bottom-0 relative m-0" open>
+          <form method="dialog" class="absolute top-2 right-2">
+            <button><%= image_tag "close.svg", alt: "Close", height: "22px", width: "22px" %></button>
+          </form>
+          <p class="mr-3"><%= notice %></p>
+        </dialog>
+      </div>
+    <% end %>
+
     <main class="container mx-auto mt-28 px-5 <%= class_names({ "max-w-2xl": params[:action] != "index" }) %>">
+
       <header class="flex items-center justify-between mb-8">
         <h1 class="font-bold text-lg"><%= content_for(:title) %></h1>
         <%= content_for(:header_aside) %>
       </header>
-      <p style="color: green"><%= notice %></p>
+
       <%= yield %>
     </main>
   </body>

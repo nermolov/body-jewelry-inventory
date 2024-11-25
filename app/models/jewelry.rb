@@ -3,6 +3,7 @@ class Jewelry < ApplicationRecord
   belongs_to :studio
   belongs_to :location
   belongs_to :material
+
   delegated_type :jewelry_attributes, types: %w[
       AttributesCaptiveBeadRing
       AttributesChain
@@ -13,4 +14,5 @@ class Jewelry < ApplicationRecord
       AttributesThreadedEnd
       AttributesThreadlessEnd
     ], dependent: :destroy
+  accepts_nested_attributes_for :jewelry_attributes
 end

@@ -49,6 +49,11 @@ class JewelriesController < ApplicationController
     redirect_to jewelries_path, status: :see_other, notice: "Jewelry was successfully destroyed."
   end
 
+  def get_jewelry_type_name (jewelry)
+    @jewelry_attribute_type_names[jewelry.jewelry_attributes_type]
+  end
+  helper_method :get_jewelry_type_name
+
   def full_jewelry_type_name
     if @jewelry
       "#{@jewelry_attribute_type_names[@jewelry.jewelry_attributes_type]} jewelry"

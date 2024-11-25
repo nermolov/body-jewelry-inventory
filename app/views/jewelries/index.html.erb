@@ -14,6 +14,7 @@
 <%= render "table/table",
   fields: [
     {field: "name", title: "Name"},
+    {lambda: proc { |jewelry| get_jewelry_type_name jewelry }, title: "Type" },
     {lambda: proc { |jewelry| jewelry.brand.name }, title: "Brand" },
     {lambda: proc { |jewelry| jewelry.location.name }, title: "Location" },
     {lambda: proc { |jewelry| jewelry.material.name }, title: "Material" },

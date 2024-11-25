@@ -2,6 +2,8 @@
 
 A body jewelry inventory app built for my boyfriend in the industry.
 
+https://github.com/user-attachments/assets/06d556bb-e5d3-43ff-8fd7-ca783df7c296
+
 ## Development
 
 ```sh

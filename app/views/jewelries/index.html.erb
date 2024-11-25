@@ -1,4 +1,4 @@
-<% content_for :title, "Jewelries" %>
+<% content_for :title, "Jewelry" %>
 <% content_for :header_aside do %>
   <%= app_form_with(url: new_jewelry_path, method: "get") do |f| %>
     <%= f.input :attributes,
@@ -14,6 +14,10 @@
 <%= render "table/table",
   fields: [
     {field: "name", title: "Name"},
+    {lambda: proc { |jewelry| jewelry.brand.name }, title: "Brand" },
+    {lambda: proc { |jewelry| jewelry.location.name }, title: "Location" },
+    {lambda: proc { |jewelry| jewelry.material.name }, title: "Material" },
+    {lambda: proc { |jewelry| jewelry.studio.name }, title: "Studio" },
     {lambda: proc { |jewelry| link_to "View", edit_jewelry_path(jewelry), class: "underline" }, title: ""}
   ], 
   models: @jewelries

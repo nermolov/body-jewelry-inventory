@@ -4,7 +4,7 @@ class JewelriesController < ApplicationController
 
   # GET /jewelries or /jewelries.json
   def index
-    @jewelries = Jewelry.all
+    @jewelries = Jewelry.preload(:brand, :location, :material, :studio).all
   end
 
   # GET /jewelries/new

@@ -65,7 +65,7 @@ class JewelriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def jewelry_params
       jewelry_base_params.merge({
-        jewelry_attributes_attributes: @jewelry ? jewelry_attribute_params.merge({ id: @jewelry.id }) : jewelry_attribute_params
+        jewelry_attributes_attributes: jewelry_attribute_params
       })
     end
 
@@ -76,7 +76,7 @@ class JewelriesController < ApplicationController
     def jewelry_attribute_params
       case jewelry_base_params[:jewelry_attributes_type]
       when "AttributesCaptiveBeadRing"
-        jewelry_base_params.expect(jewelry_attributes_attributes: [ :gauge, :ring_diameter, :bead_diameter ])
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :ring_diameter, :bead_diameter ])
       end
     end
 end

@@ -9,7 +9,7 @@
   <%= hidden_field(:jewelry, :jewelry_attributes_type) %>
 
   <%= f.fields_for :jewelry_attributes do |f| %>
-    <%= f.input :gauge, as: :integer %>
+    <%= render "#{@jewelry.jewelry_attributes_class.name.underscore.pluralize}/form", f: f %>
   <% end %>
 
   <%= render "partials/form_save_or_delete", record: jewelry, f: f %>

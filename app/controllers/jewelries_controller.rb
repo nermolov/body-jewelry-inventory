@@ -1,5 +1,6 @@
 class JewelriesController < ApplicationController
   before_action :set_jewelry, only: %i[ edit update destroy ]
+  before_action :set_jewelry_attribute_types, only: %i[ index new edit ]
 
   # GET /jewelries or /jewelries.json
   def index
@@ -46,6 +47,12 @@ class JewelriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_jewelry
       @jewelry = Jewelry.find(params.expect(:id))
+    end
+
+    def set_jewelry_attribute_types
+      @jewelry_attribute_types = Jewelry.jewelry_attributes_types
+      # prettify class names e.g. AttributesCaptiveBeadRing => "Captive Bead Ring"
+      @jewelry_attribute_type_names = @jewelry_attribute_types.to_h { |type| [ type, type[10, 100].split(/(?=[A-Z])/).join(" ") ] }
     end
 
     # Only allow a list of trusted parameters through.

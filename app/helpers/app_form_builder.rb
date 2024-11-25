@@ -123,7 +123,7 @@ class AppFormBuilder < ActionView::Helpers::FormBuilder
   def collection_input(method, options, &block)
     form_group(method, options) do
       safe_join [
-        label(method, options[:label]),
+        (label(method, options[:label]) unless options[:label] == false),
         block.call
       ]
     end

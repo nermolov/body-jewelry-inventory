@@ -1,6 +1,14 @@
 <% content_for :title, "Jewelries" %>
 <% content_for :header_aside do %>
-  <%= link_to "New Jewelry", new_jewelry_path, class: "btn" %>
+  <%= app_form_with(url: new_jewelry_path, method: "get") do |f| %>
+    <%= f.input :attributes,
+      collection: @jewelry_attribute_types,
+      text_method: proc { |type| @jewelry_attribute_type_names[type] },
+      prompt: "New Jewelry",
+      label: false,
+      input_html: {onchange: "if (this.value !== '') this.form.requestSubmit()"}
+      %>
+  <% end %>
 <% end %>
 
 <%= render "table/table",

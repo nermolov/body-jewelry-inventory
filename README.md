@@ -1,4 +1,4 @@
-# body-jewelry inventory
+# body-jewelry-inventory
 
 A body jewelry inventory app built for my boyfriend in the industry.
 

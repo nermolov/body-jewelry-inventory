@@ -19,3 +19,11 @@ bin/rails test:all
 ## Production
 
 Authentication is needed before the app can be deployed to production
+
+## Roadmap
+
+- Configurable gauge or mm unit inputs for gauge/length/diameter fields
+- Filter/Search/Sort index table
+- Inline search select/creation for simple related models (e.g. Material)
+- Add validation to more fields
+- Write more tests

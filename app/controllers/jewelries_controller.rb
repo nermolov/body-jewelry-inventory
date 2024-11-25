@@ -77,6 +77,20 @@ class JewelriesController < ApplicationController
       case jewelry_base_params[:jewelry_attributes_type]
       when "AttributesCaptiveBeadRing"
         jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :ring_diameter, :bead_diameter ])
+      when "AttributesChain"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :length ])
+      when "AttributesCircularBarbell"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :diameter ])
+      when "AttributesCurvedBarbell"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :length ])
+      when "AttributesLabretPost"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :length ])
+      when "AttributesPlug"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :length ])
+      when "AttributesThreadedEnd"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :diameter ])
+      when "AttributesThreadlessEnd"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :id, :gauge, :diameter ])
       end
     end
 end

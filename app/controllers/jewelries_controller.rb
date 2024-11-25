@@ -49,6 +49,13 @@ class JewelriesController < ApplicationController
     redirect_to jewelries_path, status: :see_other, notice: "Jewelry was successfully destroyed."
   end
 
+  def full_jewelry_type_name
+    if @jewelry
+      "#{@jewelry_attribute_type_names[@jewelry.jewelry_attributes_type]} jewelry"
+    end
+  end
+  helper_method :full_jewelry_type_name
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_jewelry

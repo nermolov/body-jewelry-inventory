@@ -9,7 +9,12 @@ class JewelriesController < ApplicationController
 
   # GET /jewelries/new
   def new
-    @jewelry = Jewelry.new
+    new_attributes_type_name = request.query_parameters[:attributes]
+    if @jewelry_attribute_types.include? new_attributes_type_name
+      @jewelry = Jewelry.new(jewelry_attributes: new_attributes_type_name.constantize.new)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   # GET /jewelries/1/edit
@@ -18,6 +23,7 @@ class JewelriesController < ApplicationController
 
   # POST /jewelries
   def create
+    # debugger
     @jewelry = Jewelry.new(jewelry_params)
 
     if @jewelry.save
@@ -50,6 +56,7 @@ class JewelriesController < ApplicationController
     end
 
     def set_jewelry_attribute_types
+      # ["AttributesCaptiveBeadRing", ...]
       @jewelry_attribute_types = Jewelry.jewelry_attributes_types
       # prettify class names e.g. AttributesCaptiveBeadRing => "Captive Bead Ring"
       @jewelry_attribute_type_names = @jewelry_attribute_types.to_h { |type| [ type, type[10, 100].split(/(?=[A-Z])/).join(" ") ] }
@@ -57,6 +64,19 @@ class JewelriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def jewelry_params
-      params.expect(jewelry: [ :name ])
+      jewelry_base_params.merge({
+        jewelry_attributes_attributes: @jewelry ? jewelry_attribute_params.merge({ id: @jewelry.id }) : jewelry_attribute_params
+      })
+    end
+
+    def jewelry_base_params
+      params.expect(jewelry: [ :name, :brand_id, :studio_id, :location_id, :material_id, :jewelry_attributes_type, jewelry_attributes_attributes: {} ])
+    end
+
+    def jewelry_attribute_params
+      case jewelry_base_params[:jewelry_attributes_type]
+      when "AttributesCaptiveBeadRing"
+        jewelry_base_params.expect(jewelry_attributes_attributes: [ :gauge, :ring_diameter, :bead_diameter ])
+      end
     end
 end
